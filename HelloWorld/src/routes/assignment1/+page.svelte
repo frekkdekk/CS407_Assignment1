@@ -33,7 +33,7 @@
 
         // every object is initially created at ( 0, 0, 0 )
         // move the camera back so we can view the scene
-        camera.position.set(5, 3, 10);
+        camera.position.set(3, 1, 10);
 
         // create a geometry
         const geometry = new BoxGeometry(2, 2, 2);
@@ -67,7 +67,7 @@
 
 <div class="container">
     <div class="row">
-        <div class="col">
+        <div class="col scene-col">
             <div class="scene-container" id="scene_1"></div>
         </div>
     </div>
