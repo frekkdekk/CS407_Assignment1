@@ -6,8 +6,8 @@
     min-height: 500px;
     width: 100%;
     height: 100%;
-    border: 2px solid deeppink;
-    background-color: skyblue;
+    border: 2px solid #bfd8cb;
+    background-color: thistle;
   }
 
 .scene-col {
