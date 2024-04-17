@@ -1,0 +1,24 @@
+<p class="display-5 text-center">About</p>
+
+<br>
+
+<div class="container">
+    <div class="row">
+        <div class="col"></div>
+        <div class="col">
+            <p>S24 CS407 - Assignment Portfolio</p>
+            <p>Mike Deladurantaye</p>
+            <ul>
+                <li>
+                    <a href="https://github.com/frekkdekk/CS407_Assignment1">
+                        Github</a>
+                </li>
+                <li>
+                    <a href="https://vercel.com/frekkdekks-projects/cs-407-assignment1/3Nd7F9JbV6S6bpMPYFjgEB16Nasx">
+                        Vercel</a>
+                </li>
+            </ul>
+        </div>
+        <div class="col"></div>
+    </div>
+</div>
