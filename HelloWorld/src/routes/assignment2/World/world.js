@@ -1,7 +1,8 @@
 import { createCamera } from './components/camera.js';
-import { createCube } from './components/cube.js';
+import { createOctohedron } from './components/octohedron.js';
 import { createLights } from './components/lights.js';
 import { createScene } from './components/scene.js';
+import { WireframeGeometry } from 'three';
 
 import { createRenderer } from './systems/renderer.js';
 import { Resizer } from './systems/resizer.js';
@@ -19,27 +20,25 @@ class World {
         renderer = createRenderer();
         container.append(renderer.domElement);
 
-        const cube = createCube();
+        const octohedron = createOctohedron();
         const light = createLights();
 
-        scene.add(cube, light);
+        scene.add(octohedron, light);
 
         const resizer = new Resizer(container, camera, renderer);
     }
+
 
     render() {
         // draw a single frame
         renderer.render(scene, camera);
     }
 
-    animate() {
-        requestAnimationFrame( animate );
-    
-        cube.rotation.x += 0.01;
-        cube.rotation.y += 0.01;
-    
-        renderer.render( scene, camera );
+
+    toggleWireframe() {
+        const wireframe = new WireframeGeometry(octohedron)
     }
+
 }
 
 export { World };
