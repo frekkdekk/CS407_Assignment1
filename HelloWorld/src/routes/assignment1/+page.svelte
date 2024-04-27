@@ -10,7 +10,7 @@
 
         world = new World(container);
 
-        world.render();
+        world.animate();
 
     });
 </script>

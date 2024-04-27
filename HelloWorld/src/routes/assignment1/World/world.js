@@ -8,6 +8,7 @@ import { Resizer } from './systems/resizer.js';
 let camera;
 let scene;
 let renderer;
+let cube;
 
 class World {
     constructor(container) {
@@ -18,7 +19,7 @@ class World {
 
         container.append(renderer.domElement);
 
-        const cube = createCube();
+        cube = createCube();
 
         scene.add(cube);
 
@@ -28,6 +29,15 @@ class World {
     render() {
         // draw a single frame
         renderer.render(scene, camera);
+    }
+
+    animate = () => {
+        requestAnimationFrame( this.animate );
+    
+        cube.rotation.x += 0.01;
+        cube.rotation.y += 0.01;
+    
+        renderer.render( scene, camera );   
     }
 
 }
