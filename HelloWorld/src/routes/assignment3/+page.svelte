@@ -9,7 +9,7 @@
         const world = new World(container);
 
         // 2. Render the scene
-        world.render();
+        world.start();
     });
 </script>
 
