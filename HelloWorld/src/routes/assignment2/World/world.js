@@ -1,42 +1,100 @@
 import { createCamera } from './components/camera.js';
-import { createOctohedron } from './components/octohedron.js';
+import { createOctohedron, wireframeMaterial, standardMaterial } from './components/octohedron.js';
 import { createLights } from './components/lights.js';
 import { createScene } from './components/scene.js';
-import { WireframeGeometry } from 'three';
 
 import { createRenderer } from './systems/renderer.js';
 import { Resizer } from './systems/resizer.js';
+import { Loop } from './systems/loop.js';
 
 // These variables are module-scoped: we cannot access them
 // from outside the module
 let camera;
 let renderer;
 let scene;
+let loop;
+
+let octohedron;
+let light;
+
+let isAnimated;
+let isWireframe;
+
 
 class World {
+
     constructor(container) {
+
         camera = createCamera();
-        scene = createScene();
         renderer = createRenderer();
+        scene = createScene();
+
+        isAnimated = false;
+        isWireframe = false;
+
         container.append(renderer.domElement);
 
-        const octohedron = createOctohedron();
-        const light = createLights();
+        octohedron = createOctohedron();
+
+        loop = new Loop(camera, scene, renderer);
+
+        loop.updatables.push(octohedron)
+
+        light = createLights();
 
         scene.add(octohedron, light);
 
         const resizer = new Resizer(container, camera, renderer);
+
     }
 
 
     render() {
-        // draw a single frame
-        renderer.render(scene, camera);
+
+        loop.start();
+
+    }
+
+    start() {
+
+        loop.start();
+
+    }
+
+    stop() {
+
+        loop.stop();
+
     }
 
 
     toggleWireframe() {
-        const wireframe = new WireframeGeometry(octohedron)
+
+        isWireframe = !isWireframe;
+
+        if (isWireframe) {
+            console.log("Wireframe on")
+            octohedron.material = wireframeMaterial;
+        } else {
+            console.log("Wireframe off")
+            octohedron.material = standardMaterial;
+        }
+
+    }
+
+
+    toggleAnimation() {
+
+        isAnimated = !isAnimated;
+
+        if (isAnimated) {
+            console.log("Animation starting")
+            loop.start();
+        } else {
+            console.log("Animation stopping")
+            loop.stop();
+        }
+
     }
 
 }
