@@ -29,7 +29,7 @@ class World {
         renderer = createRenderer();
         scene = createScene();
 
-        isAnimated = false;
+        isAnimated = true;
         isWireframe = false;
 
         container.append(renderer.domElement);
@@ -45,13 +45,6 @@ class World {
         scene.add(octohedron, light);
 
         const resizer = new Resizer(container, camera, renderer);
-
-    }
-
-
-    render() {
-
-        loop.start();
 
     }
 
@@ -75,9 +68,11 @@ class World {
         if (isWireframe) {
             console.log("Wireframe on")
             octohedron.material = wireframeMaterial;
+            if (!isAnimated) {renderer.render(scene, camera)}
         } else {
             console.log("Wireframe off")
             octohedron.material = standardMaterial;
+            if (!isAnimated) {renderer.render(scene, camera)}
         }
 
     }

@@ -22,6 +22,7 @@ class Loop {
 
     stop() {
         this.renderer.setAnimationLoop(null);
+        this.renderer.render(this.scene, this.camera);
     }
 
     tick() {
