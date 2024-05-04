@@ -18,20 +18,5 @@ function createOctohedron() {
   return octohedron;
 }
 
-function toggleWireframe(octohedron) {
-  octohedron.material = isWireframe ? wireframeMaterial : standardMaterial;
-
-}
-
-/* 
-Deprecated - Don't forget to export if you use it again.
-function createOctohedronWireframe() {
-  const geometry = new OctahedronGeometry();
-  const material = new MeshBasicMaterial({ color: 'slateblue' });
-  const octohedron = new Mesh(geometry, material);
-  const wireframe = new WireframeGeometry(octohedron)
-
-  return wireframe;  
-} */
 
 export { createOctohedron, wireframeMaterial, standardMaterial };
