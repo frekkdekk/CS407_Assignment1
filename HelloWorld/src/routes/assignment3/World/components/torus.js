@@ -1,11 +1,14 @@
-import { TorusGeometry, Mesh, MeshStandardMaterial, MathUtils } from 'three';
+import { TorusGeometry, Mesh, MeshToonMaterial, MathUtils } from 'three';
+
+let toonMaterial = new MeshToonMaterial({color: "#800080"});
 
 function createTorus() {
-
     const geometry = new TorusGeometry();
-    const material = new MeshStandardMaterial({color: 0x6c26d4});
-    const torus = new Mesh(geometry, material);
+    const torus = new Mesh(geometry, toonMaterial);
+
     const radiansPerSecond = MathUtils.degToRad(30);
+
+    torus.position.x = -6;
 
     torus.tick = (delta) => {
         torus.rotation.y += radiansPerSecond * delta;
