@@ -63,7 +63,7 @@
                     >
                     <div class="card-body">
                         <h5 class="card-title text-center">Assignment 3</h5>
-                        <p class="card-text text-center">Donut & Pyramid</p>
+                        <p class="card-text text-center">Toon Donut & Pyramid</p>
                         <div class="d-flex justify-content-center"></div>
                         <center
                             ><a class="btn btn-primary" href="/assignment3"
@@ -78,9 +78,18 @@
         <div class="row">
             <div class="col-sm">
                 <div class="card" style="width: 18rem;">
+                    <center
+                        ><img
+                            class="card-image-top"
+                            width="286px"
+                            height="180px"
+                            src="/a4.png"
+                            alt=""
+                        /></center
+                    >
                     <div class="card-body">
                         <h5 class="card-title text-center">Assignment 4</h5>
-                        <p class="card-text text-center">TODO</p>
+                        <p class="card-text text-center">Child Objects</p>
                         <div class="d-flex justify-content-center"></div>
                         <center
                             ><a class="btn btn-primary" href="/assignment4"

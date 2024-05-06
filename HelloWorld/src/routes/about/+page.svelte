@@ -1,3 +1,19 @@
+<script>
+    import { onMount } from "svelte";
+    import { World } from "./World/world.js";
+
+    let container;
+    let world;
+
+    onMount(() => {
+        container = document.querySelector("#about-scene");
+
+        world = new World(container);
+
+        world.start();
+    });
+</script>
+
 <p class="display-5 text-center">About</p>
 
 <br>
@@ -20,5 +36,8 @@
             </ul>
         </div>
         <div class="col"></div>
+    </div>
+    <div class="row">
+        <div class="scene-container" id="about-scene"></div>
     </div>
 </div>

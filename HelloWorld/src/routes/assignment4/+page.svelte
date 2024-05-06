@@ -18,6 +18,7 @@
             const newColor = event.target.value;
             world.updateColor(newColor);
         });
+
         world.start();
     });
 </script>
@@ -32,7 +33,7 @@
         <div class="col-3">
             <center><strong>Options</strong></center>
             <br />
-            <input type="color" id="colorPicker" />
+            <input type="color" value="green" id="colorPicker" />
             <br />
             <br />
             <input on:click={world.toggleAnimation} type="checkbox" checked />
