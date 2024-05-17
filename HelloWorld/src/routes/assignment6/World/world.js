@@ -1,21 +1,17 @@
 import { createCamera } from './components/camera.js';
 import { createDirectionalLight, createAmbientLight } from './components/lights.js';
 import { createScene } from './components/scene.js';
-import { createTorus } from './components/torus.js';
-import { createTetrahedron } from './components/tetrahedron.js';
-import { createCone } from './components/cone.js';
 
 import { createRenderer } from './systems/renderer.js';
 import { Resizer } from './systems/resizer.js';
 import { Loop } from './systems/loop.js';
 
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+
 let camera;
 let renderer;
 let scene;
 let loop;
-
-let torus; 
-let cone;
 
 let directionalLight; 
 let ambientLight; 
@@ -29,22 +25,20 @@ class World {
         renderer = createRenderer();
         scene = createScene();
 
+        loader = new GLTFLoader();
+
+        const loadedData = loader.load('');
+
         isAnimated = true;
 
         container.append(renderer.domElement);
 
-        torus = createTorus();
-        cone = createCone();
-
         loop = new Loop(camera, scene, renderer);
-
-        loop.updatables.push(torus);
-        loop.updatables.push(cone);
 
         directionalLight = createDirectionalLight();
         ambientLight = createAmbientLight();
 
-        scene.add(torus, cone, directionalLight, ambientLight);
+        scene.add(directionalLight, ambientLight);
 
         const resizer = new Resizer(container, camera, renderer);
 
@@ -84,8 +78,8 @@ class World {
     }
 
     updateColor(color) {
-        torus.material.color.set(color);
-        cone.material.color.set(color);
+        //torus.material.color.set(color);
+        //cone.material.color.set(color);
         renderer.render(scene, camera);
     }
 
