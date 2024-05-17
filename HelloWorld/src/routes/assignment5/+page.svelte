@@ -14,10 +14,10 @@
         newColor = "#800080";
         const inputElement = document.getElementById("colorPicker");
 
-        inputElement.addEventListener("input", function (event) {
+        /* inputElement.addEventListener("input", function (event) {
             const newColor = event.target.value;
             world.updateColor(newColor);
-        });
+        }); */
 
         world.start();
     });
@@ -32,9 +32,9 @@
         </div>
         <div class="col-3">
             <center><strong>Options</strong></center>
-            <br />
+            <!-- <br />
             <input type="color" value="green" id="colorPicker" />
-            <br />
+            <br /> -->
             <br />
             <input on:click={world.toggleAnimation} type="checkbox" checked />
             Animation

@@ -101,6 +101,14 @@
             </div>
             <div class="col-sm">
                 <div class="card" style="width: 18rem;">
+                    <div class="card" style="width: 18rem;">
+                        <img
+                            class="card-image-top"
+                            width="286px"
+                            height="180px"
+                            src="/a5.png"
+                            alt=""
+                        />
                     <div class="card-body">
                         <h5 class="card-title text-center">Assignment 5</h5>
                         <p class="card-text text-center">Horn!</p>

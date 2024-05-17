@@ -19,6 +19,9 @@
 			<li class="nav-item">
 				<a class="nav-link" href="/about">About</a>
 			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="/todo">TODO List</a>
+			</li>
 		</ul>
 		
 	</div>

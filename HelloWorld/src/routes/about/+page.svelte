@@ -1,18 +1,4 @@
-<script>
-    import { onMount } from "svelte";
-    import { World } from "./World/world.js";
 
-    let container;
-    let world;
-
-    onMount(() => {
-        container = document.querySelector("#about-scene");
-
-        world = new World(container);
-
-        world.start();
-    });
-</script>
 
 <p class="display-5 text-center">About</p>
 

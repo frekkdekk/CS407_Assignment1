@@ -1,7 +1,8 @@
 import { createCamera } from './components/camera.js';
 import { createDirectionalLight, createAmbientLight } from './components/lights.js';
 import { createScene } from './components/scene.js';
-import { createBufferGeometry } from './components/bufferGeometry.js';
+import { createHorn } from './components/hornGeometry.js';
+import { createSphere } from './components/sphere.js';
 
 import { createRenderer } from './systems/renderer.js';
 import { Resizer } from './systems/resizer.js';
@@ -14,7 +15,7 @@ let camera, renderer, scene, loop;
 
 let directionalLight, ambientLight;
 
-let buff, cyl, sphere;
+let horn;
 
 class World {
     constructor(container) {
@@ -23,7 +24,7 @@ class World {
         renderer = createRenderer();
         scene = createScene();
 
-        buff = createBufferGeometry();
+        horn = createHorn();
 
         container.append(renderer.domElement);
 
@@ -33,12 +34,12 @@ class World {
 
         loop = new Loop(camera, scene, renderer);
 
-        loop.updatables.push(buff);
+        loop.updatables.push(horn);
 
         directionalLight = createDirectionalLight();
         ambientLight = createAmbientLight();
 
-        scene.add(buff, directionalLight, ambientLight);
+        scene.add(horn, directionalLight, ambientLight);
 
         const resizer = new Resizer(container, camera, renderer);
 
@@ -73,19 +74,13 @@ class World {
         } else {
             console.log("Animation stopping")
             loop.stop();
+            renderer.render(scene, camera);
         }
 
     }
 
-    updateColor(color) {
-        //buff.material.color.set(color);
-        renderer.render(scene, camera);
-    }
-
     toggleAmbientLight() {
-        let k;
-        k = ambientLight.intensity ? 0 : 7;
-        ambientLight.intensity = k;
+        ambientLight.intensity = ambientLight.intensity ? 0 : 7;
         renderer.render(scene, camera);
     }
 

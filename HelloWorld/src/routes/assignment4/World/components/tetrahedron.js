@@ -1,6 +1,6 @@
 import { TetrahedronGeometry, Mesh, MeshNormalMaterial, MathUtils } from 'three';
 
-let material = new MeshNormalMaterial({ wireframe: false });
+let material = new MeshNormalMaterial({ wireframe: true });
 
 function createTetrahedron() {
     const geometry = new TetrahedronGeometry(2, 2);
