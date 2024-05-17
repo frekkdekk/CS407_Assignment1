@@ -90,7 +90,6 @@
                     <div class="card-body">
                         <h5 class="card-title text-center">Assignment 4</h5>
                         <p class="card-text text-center">Child Objects</p>
-                        <div class="d-flex justify-content-center"></div>
                         <center
                             ><a class="btn btn-primary" href="/assignment4"
                                 >Go to assignment 4</a
@@ -109,27 +108,25 @@
                             src="/a5.png"
                             alt=""
                         />
-                    <div class="card-body">
-                        <h5 class="card-title text-center">Assignment 5</h5>
-                        <p class="card-text text-center">Horn!</p>
-                        <div class="d-flex justify-content-center"></div>
-                        <center
-                            ><a class="btn btn-primary" href="/assignment5">
-                                Go to assignment 5</a
-                            ></center
-                        >
-                    </div>
+                        <div class="card-body">
+                            <h5 class="card-title text-center">Assignment 5</h5>
+                            <p class="card-text text-center">Horn!</p>
+                            <center
+                                ><a class="btn btn-primary" href="/assignment5"
+                                    >Go to assignment 5</a
+                                ></center
+                            >
+                        </div>
                 </div>
             </div>
             <div class="col-sm">
                 <div class="card" style="width: 18rem;">
                     <div class="card-body">
                         <h5 class="card-title text-center">Assignment 6</h5>
-                        <p class="card-text text-center">TODO</p>
-                        <div class="d-flex justify-content-center"></div>
+                        <p class="card-text text-center">Starting GLTF!</p>
                         <center
-                            ><a class="btn btn-primary" href="/assignment3">
-                                Go to assignment 6</a
+                            ><a class="btn btn-primary" href="/assignment6"
+                                >Go to assignment 6</a
                             ></center
                         >
                     </div>
