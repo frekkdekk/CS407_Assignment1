@@ -1,52 +1,61 @@
 import { createCamera } from './components/camera.js';
-import { createDirectionalLight, createAmbientLight } from './components/lights.js';
+import { createSpotLight, createAmbientLight, createDirectionalLight } from './components/lights.js';
 import { createScene } from './components/scene.js';
-
+import { createFog } from './components/fog.js';
 import { createRenderer } from './systems/renderer.js';
 import { Resizer } from './systems/resizer.js';
 import { Loop } from './systems/loop.js';
+import { loadMonster } from './components/monster.js';
 
-import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import { createOrbitControls } from './systems/controls.js';
 
-let camera;
-let renderer;
-let scene;
-let loop;
+import { createFloor } from './components/floor.js';
 
-let directionalLight; 
-let ambientLight; 
+let camera, renderer, scene, loop; // Necessary bits
 
-let isAnimated;
+let ambientLight, directionalLight, spotLight; // Lighting
+
+let floor, monster; // Additions to the scene
+
 
 class World {
     constructor(container) {
 
+        // Basic setup
         camera = createCamera();
         renderer = createRenderer();
         scene = createScene();
-
-        loader = new GLTFLoader();
-
-        const loadedData = loader.load('');
-
-        isAnimated = true;
-
-        container.append(renderer.domElement);
-
         loop = new Loop(camera, scene, renderer);
+        container.append(renderer.domElement);
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        const resizer = new Resizer(container, camera, renderer);
+        
+
+        // Setting the stage
+        floor = createFloor(200, 200);
+        scene.add(floor);
 
         directionalLight = createDirectionalLight();
+        scene.add(directionalLight);
+
         ambientLight = createAmbientLight();
+        scene.add(ambientLight);
 
-        scene.add(directionalLight, ambientLight);
+        spotLight = createSpotLight();
+        scene.add(spotLight);
 
-        const resizer = new Resizer(container, camera, renderer);
+        scene.fog = createFog();
 
+
+        // Controls
+        const controls = createOrbitControls(camera, renderer.domElement);
+        controls.target.set(1, 1, 1);
     }
 
-    render() {
+    async init() {
+        monster = await loadMonster();
 
-        renderer.render(scene, camera);
+        scene.add(monster);
 
     }
 
@@ -62,33 +71,25 @@ class World {
 
     }
 
-
-    toggleAnimation() {
-
-        isAnimated = !isAnimated;
-
-        if (isAnimated) {
-            console.log("Animation starting")
-            loop.start();
-        } else {
-            console.log("Animation stopping")
-            loop.stop();
-        }
-
+    keyDown(event) {
+        if (event.key === 'w') {
+            camControls.moveForward = true;
+            camControls.update(loop.delta);
+          }
+          if (event.key === 'a') {
+            camControls.moveLeft = true;
+            camControls.update(loop.delta);
+          }
+          if (event.key === 'd') {
+            camControls.moveRight = true;
+            camControls.update(loop.delta);
+          }
+          if (event.key === 's') {
+            camControls.moveBackward = true;
+            camControls.update(loop.delta);
+          }
     }
 
-    updateColor(color) {
-        //torus.material.color.set(color);
-        //cone.material.color.set(color);
-        renderer.render(scene, camera);
-    }
-
-    toggleAmbientLight() {
-        let k;
-        k = ambientLight.intensity? 0 : 7;
-        ambientLight.intensity = k;
-        renderer.render(scene, camera);
-    }
 }
 
 export { World };

@@ -1,12 +1,14 @@
-import { PlaneGeometry, Mesh, MeshStandardMaterial } from 'three';
+import { PlaneGeometry, Mesh, MeshStandardMaterial, DoubleSide, MathUtils } from 'three';
 
-let standardMaterial = new MeshStandardMaterial({color: "#800080"});
+let standardMaterial = new MeshStandardMaterial({color: "#191970", side: DoubleSide});
 
 function createFloor(width, height) {
     const geometry = new PlaneGeometry(width, height);
     const floor = new Mesh(geometry, standardMaterial);
 
-    floor.rotation.set(90, 0, 0);
+    floor.receiveShadow = true;
+
+    floor.rotation.x = Math.PI / 2;
 
     floor.tick = (delta) => {
         //floor.rotation.y -= radiansPerSecond * delta;

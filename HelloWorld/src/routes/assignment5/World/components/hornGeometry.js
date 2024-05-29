@@ -1,4 +1,4 @@
-import { BufferGeometry, Mesh, MeshPhongMaterial, MathUtils, BufferAttribute, MeshStandardMaterial } from 'three';
+import { BufferGeometry, Mesh, MeshPhongMaterial, MathUtils, BufferAttribute, MeshStandardMaterial, DoubleSide } from 'three';
 
 const vertices = [
     6, 6, 0,      //0 Base 12x12
@@ -69,7 +69,8 @@ function createHorn() {
         color: 0xffffff,
         flatShading: true,
         vertexColors: true,
-        shininess: 0
+        shininess: 0,
+        wireframe: false
     };
 
     const vfa = new Float32Array(vertices);
@@ -86,8 +87,11 @@ function createHorn() {
     material.flatShading = true;
     material.vertexColors = true;
     material.shininess = 0;
+    material.side = DoubleSide;
 
     const horn = new Mesh(geometry, material);
+
+    horn.receiveShadow = true;
 
     const radiansPerSecond = MathUtils.degToRad(10);
 
