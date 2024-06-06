@@ -23,22 +23,22 @@ const indices = [
     3, 0, 1,
     1, 2, 3,
 
-    3, 7, 4, 
+    3, 7, 4,
     4, 0, 3,   //Base
-    0, 4, 5, 
+    0, 4, 5,
     5, 1, 0,
-    5, 6, 2, 
+    5, 6, 2,
     2, 1, 5,
-    6, 7, 3, 
+    6, 7, 3,
     3, 2, 6,
 
-    7, 11, 8, 
+    7, 11, 8,
     8, 4, 7,  //Neck
-    8, 9, 5, 
+    8, 9, 5,
     5, 4, 8,
-    9, 10, 6, 
+    9, 10, 6,
     6, 5, 9,
-    10, 11, 7, 
+    10, 11, 7,
     7, 6, 10,
 
     11, 12, 8,        //Tail
@@ -47,7 +47,8 @@ const indices = [
     10, 12, 11
 ];
 
-const colors = new Float32Array([
+// These POS colors were the only reason I couldn't get per-vertex colors.
+/* const colors = new Float32Array([
     222, 58, 47,    // 0
     222, 58, 47,    // 1
     222, 58, 47,    // 2
@@ -61,6 +62,23 @@ const colors = new Float32Array([
     58, 222, 47,    // 10
     58, 222, 47,    // 11
     187, 47, 222    // 12
+]); */
+
+// I gave chatGPT my colors and it gave me this (normalized I think): 
+const gptColors = new Float32Array([
+    222 / 255, 58 / 255, 47 / 255,    // 0
+    222 / 255, 58 / 255, 47 / 255,    // 1
+    222 / 255, 58 / 255, 47 / 255,    // 2
+    222 / 255, 58 / 255, 47 / 255,    // 3
+    61 / 255, 47 / 255, 222 / 255,    // 4
+    61 / 255, 47 / 255, 222 / 255,    // 5
+    61 / 255, 47 / 255, 222 / 255,    // 6
+    61 / 255, 47 / 255, 222 / 255,    // 7
+    58 / 255, 222 / 255, 47 / 255,    // 8
+    58 / 255, 222 / 255, 47 / 255,    // 9
+    58 / 255, 222 / 255, 47 / 255,    // 10
+    58 / 255, 222 / 255, 47 / 255,    // 11
+    187 / 255, 47 / 255, 222 / 255    // 12
 ]);
 
 function createHorn() {
@@ -82,7 +100,7 @@ function createHorn() {
     geometry.setAttribute('position', new BufferAttribute(vfa, 3))
     geometry.setIndex(indices)
 
-    geometry.setAttribute('color', new BufferAttribute(colors, 3, false))
+    geometry.setAttribute('color', new BufferAttribute(gptColors, 3))
 
     material.flatShading = true;
     material.vertexColors = true;
