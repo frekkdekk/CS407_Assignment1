@@ -2,7 +2,7 @@ import { TorusGeometry, Mesh, MeshLambertMaterial, MathUtils } from 'three';
 import { Vector3 } from 'three';
 import { Matrix4 } from 'three';
 
-let material = new MeshLambertMaterial({color: "green", refractionRatio: 0.6});
+let material = new MeshLambertMaterial({color: "#DC143C", refractionRatio: 0.6});
 
 function createTorus() {
     const geometry = new TorusGeometry(8, 0.9, 20, 4);

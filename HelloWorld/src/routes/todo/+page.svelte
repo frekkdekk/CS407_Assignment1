@@ -10,13 +10,13 @@
                     <s>Assignment 4 : Use vector/matrix algebra</s>
                 </li>
                 <li class="list-group-item">
-                    Assignment 5 : Per-vertex coloring
+                    <s>Assignment 5 : Per-vertex coloring</s>
                 </li>
                 <li class="list-group-item">
                     Assignment 6 : GLTF Animations
                 </li>
                 <li class="list-group-item">
-                    All Assignments : Instruction Panel
+                    <s>All Assignments : Instruction Panel</s>
                 </li>
             </ul>
         </div>

@@ -83,9 +83,16 @@ class World {
 
     }
 
-    updateColor(color) {
-        torus.material.color.set(color);
-        cone.material.color.set(color);
+    updateColor(object, color) {
+        switch (object) {
+            case "cone":
+                cone.material.color.set(color);
+                break;
+
+            case "torus":
+                torus.material.color.set(color);
+                break;
+        }
         renderer.render(scene, camera);
     }
 

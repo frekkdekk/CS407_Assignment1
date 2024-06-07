@@ -32,15 +32,24 @@
         </div>
         <div class="col-3">
             <center><strong>Options</strong></center>
-            <!-- <br />
-            <input type="color" value="green" id="colorPicker" />
-            <br /> -->
             <br />
             <input on:click={world.toggleAnimation} type="checkbox" checked />
             Animation
             <br />
             <input on:click={world.toggleAmbientLight} type="checkbox" checked/> Ambient
             Light
+            <br />
+            <br />
+            <br />
+            <center><strong>Goals</strong></center>
+            <p>The goal of assignment 5 is to learn how geometries are organized, represented, and delivered to OpenGL and the graphics card.</p>
+            <br />
+            <center><strong>Requirements</strong></center>
+            <ul id="requirementList">
+                <li>Construct a custom geometry object manually by specifying vertices and faces in an indexed buffer geometry.</li>
+                <li>Use per-vertex colors so we can pass custom attribute data to the vertex shader.</li>
+                <li>Implement orbit and optionally camera navigation through the scene.</li>
+            </ul>
         </div>
     </div>
     <div class="row">

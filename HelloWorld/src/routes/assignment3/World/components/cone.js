@@ -1,9 +1,9 @@
 import { ConeGeometry, Mesh, MeshStandardMaterial, MathUtils } from 'three';
 
-let standardMaterial = new MeshStandardMaterial({color: "#800080"});
+let standardMaterial = new MeshStandardMaterial({color: "#F0E68C"});
 
 function createCone() {
-    const geometry = new ConeGeometry(7, 5, 3);
+    const geometry = new ConeGeometry(7, 5);
     const cone = new Mesh(geometry, standardMaterial);
 
     const radiansPerSecond = MathUtils.degToRad(30);

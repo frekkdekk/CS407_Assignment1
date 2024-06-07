@@ -80,7 +80,9 @@ class World {
     }
 
     toggleAmbientLight() {
-        ambientLight.intensity = ambientLight.intensity ? 0 : 7;
+        let k;
+        k = ambientLight.intensity? 0 : 7;
+        ambientLight.intensity = k;
         renderer.render(scene, camera);
     }
 
