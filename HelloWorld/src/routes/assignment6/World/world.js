@@ -1,94 +1,75 @@
 import { createCamera } from './components/camera.js';
-import { createSpotLight, createAmbientLight, createDirectionalLight } from './components/lights.js';
+import { createDirectionalLight, createAmbientLight } from './components/lights.js';
 import { createScene } from './components/scene.js';
-import { createFog } from './components/fog.js';
 import { createRenderer } from './systems/renderer.js';
 import { Resizer } from './systems/resizer.js';
 import { Loop } from './systems/loop.js';
-import { loadMonster } from './components/monster.js';
-
 import { createOrbitControls } from './systems/controls.js';
 
 import { createFloor } from './components/floor.js';
+import { createFog } from './components/fog.js';
+import { loadMonster } from './components/monster.js';
 
-let camera, renderer, scene, loop; // Necessary bits
+let camera, renderer, scene, loop; // Boilerplate only
 
-let ambientLight, directionalLight, spotLight; // Lighting
+let directionalLight, ambientLight; // Lights only
 
-let floor, monster; // Additions to the scene
-
+let floor, monster; // Additions only
 
 class World {
-    constructor(container) {
+  constructor(container) {
 
-        // Basic setup
-        camera = createCamera();
-        renderer = createRenderer();
-        scene = createScene();
-        loop = new Loop(camera, scene, renderer);
-        container.append(renderer.domElement);
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        const resizer = new Resizer(container, camera, renderer);
-        
+    // Boilerplate
+    camera = createCamera();
+    renderer = createRenderer();
+    scene = createScene();
 
-        // Setting the stage
-        floor = createFloor(200, 200);
-        scene.add(floor);
+    container.append(renderer.domElement);
+    loop = new Loop(camera, scene, renderer);
 
-        directionalLight = createDirectionalLight();
-        scene.add(directionalLight);
-
-        ambientLight = createAmbientLight();
-        scene.add(ambientLight);
-
-        spotLight = createSpotLight();
-        scene.add(spotLight);
-
-        scene.fog = createFog();
+    const controls = createOrbitControls(camera, renderer.domElement);
+    controls.target.set(1, 2, 3);
 
 
-        // Controls
-        const controls = createOrbitControls(camera, renderer.domElement);
-        controls.target.set(1, 1, 1);
-    }
+    // Lights
+    directionalLight = createDirectionalLight();
+    ambientLight = createAmbientLight();
+    scene.add(directionalLight, ambientLight);
 
-    async init() {
-        monster = await loadMonster();
 
-        scene.add(monster);
+    // Additions
+    floor = createFloor(200, 200);
+    scene.add(floor);
 
-    }
+    scene.fog = createFog();
+    
 
-    start() {
+    // chatGPT provided the promise handling - I'm unfamiliar
+    loadMonster().then(monster => {
+      console.log(monster);
+      scene.add(monster);
+      //loop.updatables.push(monster);
 
-        loop.start();
+    }).catch(error => {
+      console.error('An error occurred:', error);
 
-    }
+    });
 
-    stop() {
+    const resizer = new Resizer(container, camera, renderer);
+  }
 
-        loop.stop();
+  
+  start() {
 
-    }
+    loop.start();
 
-    keyDown(event) {
-        if (event.key === 'w') {
-            camControls.moveForward = true;
-            camControls.update(loop.delta);
-          }
-          if (event.key === 'a') {
-            camControls.moveLeft = true;
-            camControls.update(loop.delta);
-          }
-          if (event.key === 'd') {
-            camControls.moveRight = true;
-            camControls.update(loop.delta);
-          }
-          if (event.key === 's') {
-            camControls.moveBackward = true;
-            camControls.update(loop.delta);
-          }
-    }
+  }
+
+  stop() {
+
+    loop.stop();
+
+  }
 
 }
 

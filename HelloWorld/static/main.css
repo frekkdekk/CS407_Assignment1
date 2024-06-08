@@ -10,3 +10,7 @@
 .col {
     margin: auto;
 }
+
+.code-editor {
+    width: 400px;
+}

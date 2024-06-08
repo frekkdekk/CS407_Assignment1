@@ -18,6 +18,12 @@
                 <li class="list-group-item">
                     <s>All Assignments : Instruction Panel</s>
                 </li>
+                <li class="list-group-item">
+                    Assignment 7 : GLSL Shaders
+                </li>
+                <li class="list-group-item">
+                    Final Project
+                </li>
             </ul>
         </div>
     </div>

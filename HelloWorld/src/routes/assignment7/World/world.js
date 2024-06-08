@@ -1,21 +1,25 @@
 import { createCamera } from './components/camera.js';
 import { createDirectionalLight, createAmbientLight } from './components/lights.js';
 import { createScene } from './components/scene.js';
-import { createHorn } from './components/hornGeometry.js';
-import { createSphere } from './components/sphere.js';
-
 import { createRenderer } from './systems/renderer.js';
 import { Resizer } from './systems/resizer.js';
 import { Loop } from './systems/loop.js';
-import { createControls } from './systems/controls.js';
+import { createOrbitControls } from './systems/controls.js';
 
-let isAnimated = true;
+import { createCube } from './components/cube.js';
 
-let camera, renderer, scene, loop;
+import { GridHelper } from 'three';
 
-let directionalLight, ambientLight;
+let camera;
+let renderer;
+let scene;
+let loop;
 
-let horn;
+let directionalLight; 
+let ambientLight;
+
+let isAnimated;
+let cube;
 
 class World {
     constructor(container) {
@@ -24,25 +28,37 @@ class World {
         renderer = createRenderer();
         scene = createScene();
 
-        horn = createHorn();
+        isAnimated = true;
+
+        const controls = createOrbitControls(camera, renderer.domElement);
+        controls.target.set(1, 2, 3);
+
+        var gridHelper = new GridHelper( 4, 10 );
+        scene.add( gridHelper );
 
         container.append(renderer.domElement);
 
-        const controls = createControls(camera, renderer.domElement);
-
-        controls.target.set(1, 2, 3);
-
         loop = new Loop(camera, scene, renderer);
-
-        loop.updatables.push(horn);
 
         directionalLight = createDirectionalLight();
         ambientLight = createAmbientLight();
+        scene.add(directionalLight, ambientLight);
 
-        scene.add(horn, directionalLight, ambientLight);
+        cube = createCube();
+        scene.add(cube);
 
         const resizer = new Resizer(container, camera, renderer);
 
+    }
+ 
+    updateVertexShader(newCode) {
+        let vertexShaderCode = newCode;
+        //World.updateVertexShader(newCode);
+    }
+
+    updateFragmentShader(newCode) {
+        let fragmentShaderCode = newCode;
+        //World.updateFragmentShader(newCode);
     }
 
     render() {
@@ -74,16 +90,8 @@ class World {
         } else {
             console.log("Animation stopping")
             loop.stop();
-            renderer.render(scene, camera);
         }
 
-    }
-
-    toggleAmbientLight() {
-        let k;
-        k = ambientLight.intensity? 0 : 7;
-        ambientLight.intensity = k;
-        renderer.render(scene, camera);
     }
 
 }

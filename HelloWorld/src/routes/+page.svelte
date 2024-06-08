@@ -62,11 +62,24 @@
         </div>
         <div class="col">
             <div class="card" style="width: 18rem;">
-                <img class="card-img-top" src="..." alt="TODO: get screenshot">
+                <img class="card-img-top" src="a6.png" alt="Little guy in green world.">
                 <div class="card-body">
                   <h5 class="card-title">Assignment 6</h5>
                   <p class="card-text">Models & Animation!</p>
                   <a class="btn-primary" href="/assignment6">Go to assignment 6</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col">
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="..." alt="TODO: Get screenshot">
+                <div class="card-body">
+                  <h5 class="card-title">Assignment 7</h5>
+                  <p class="card-text">Shaders with GLSL.</p>
+                  <a class="btn-primary" href="/assignment7">Go to assignment 7</a>
                 </div>
             </div>
         </div>

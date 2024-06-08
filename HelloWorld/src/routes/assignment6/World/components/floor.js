@@ -1,6 +1,6 @@
 import { PlaneGeometry, Mesh, MeshStandardMaterial, DoubleSide, MathUtils } from 'three';
 
-let standardMaterial = new MeshStandardMaterial({color: "#191970", side: DoubleSide});
+let standardMaterial = new MeshStandardMaterial({color: "#556b2f", side: DoubleSide});
 
 function createFloor(width, height) {
     const geometry = new PlaneGeometry(width, height);

@@ -2,22 +2,40 @@
     import { onMount } from "svelte";
     import { World } from "./World/world.js";
 
+    const keys = {
+        w: false,
+        a: false,
+        s: false,
+        d: false
+    }
+
     let container;
     let world;
 
-    async function main() {
+    function main() {
         container = document.querySelector("#scene_6");
-        container.addEventListener("keydown", function (event) { world.keyDownHandler(event) });
-        container.addEventListener("keyup", function (event) { world.keyUpHandler(event) });
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'w') keys.w = true;
+            if (event.key === 'a') keys.a = true;
+            if (event.key === 's') keys.s = true;
+            if (event.key === 'd') keys.d = true;
+        });
+
+        document.addEventListener('keyup', (event) => {
+            if (event.key === 'w') keys.w = false;
+            if (event.key === 'a') keys.a = false;
+            if (event.key === 's') keys.s = false;
+            if (event.key === 'd') keys.d = false;
+        });
+
         world = new World(container);
 
-        await world.init();
         world.start();
     }
 
     onMount(() => {
         main();
-
     });
 </script>
 
