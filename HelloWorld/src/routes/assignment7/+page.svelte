@@ -9,16 +9,28 @@
     let world;
 
 
-    // indenting the code will indent it in the editor too.
+    // using examples from the Shader_examples.md on Scot's github
+    // sorry to steal it, I'm just too stupid to come up with my own shaders
     let vertexShaderCode = `
+out float hemisphere;
+
 void main() {
+    hemisphere = step(0.0,position.z);
     gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
 }
         `;
 
     let fragmentShaderCode = `
+uniform vec3 objColor;
+in float hemisphere;
+
 void main() {
-    gl_FragColor = vec4( 1.0, 0.0, 0.0, 1.0 );
+    vec3 invColor = 1.0 - objColor;
+    if(hemisphere > 0.5) {
+        gl_FragColor = vec4(objColor,1.0);
+    } else {
+        gl_FragColor = vec4(invColor,1.0);
+    }
 }
         `;
 
@@ -26,7 +38,7 @@ void main() {
     onMount(() => {
         container = document.querySelector("#scene_7");
 
-        world = new World(container);
+        world = new World(container, vertexShaderCode, fragmentShaderCode);
 
         world.start();
     });

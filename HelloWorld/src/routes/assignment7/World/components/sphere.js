@@ -12,17 +12,15 @@ export class Sphere extends Mesh {
 
         const initMaterial = new ShaderMaterial({
 
-            /* uniforms: {
+            uniforms: {
                 xValue: { value: 0.0 },
                 yValue: { value: 0.0 },
                 zValue: { value: 0.0 },
                 objColor: { value: new Vector3(0.3, 0.6, 0.2) },
                 time: { value: 0.0 }
-            } */
-
+            },
             vertexShader: vShader,
-            fragmnetShader: fShader
-
+            fragmentShader: fShader
         });
         
         super(initGeometry, initMaterial);
@@ -44,6 +42,11 @@ export class Sphere extends Mesh {
 
     updateUniform(name, value) {
         this.material.uniforms[name].value = value;
+    }
+
+    tick(delta) {
+        this.material.uniforms.time.value += delta;
+        this.material.uniformsNeedUpdate = true;
     }
 
 }

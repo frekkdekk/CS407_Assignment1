@@ -1,20 +1,18 @@
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 
-function createOrbitControls(camera, canvas) {
-  const controls = new OrbitControls(camera, canvas);
+export class Controls extends OrbitControls{
+    construction (camera, canvas){
+        const controls = new OrbitControls(camera, canvas);
 
-  controls.enableDamping = true;
+        controls.enableDamping = true;
+        
+    }
 
-  controls.keys = {
-    LEFT: 'ArrowLeft', //left arrow
-    UP: 'ArrowUp', // up arrow
-    RIGHT: 'ArrowRight', // right arrow
-    BOTTOM: 'ArrowDown' // down arrowå
-  }
+    update() {
+      this.controls.update();
+    }
 
-  controls.tick = () => controls.update();
-
-  return controls;
+  tick() {
+      this.update();
+    }
 }
-
-export { createOrbitControls };

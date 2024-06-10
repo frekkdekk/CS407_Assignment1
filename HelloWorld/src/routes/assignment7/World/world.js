@@ -4,7 +4,7 @@ import { createScene } from './components/scene.js';
 import { createRenderer } from './systems/renderer.js';
 import { Resizer } from './systems/resizer.js';
 import { Loop } from './systems/loop.js';
-import { createOrbitControls } from './systems/controls.js';
+import { Controls } from './systems/controls.js';
 
 import { Sphere } from './components/sphere.js';
 
@@ -22,7 +22,7 @@ let isAnimated;
 let sphere;
 
 class World {
-    constructor(container) {
+    constructor(container, vShaderCode, fShaderCode) {
 
         camera = createCamera();
         renderer = createRenderer();
@@ -30,7 +30,7 @@ class World {
 
         isAnimated = true;
 
-        const controls = createOrbitControls(camera, renderer.domElement);
+        const controls = new Controls(camera, renderer.domElement);
         controls.target.set(1, 2, 3);
 
         var gridHelper = new GridHelper( 4, 10 );
@@ -44,8 +44,9 @@ class World {
         ambientLight = createAmbientLight();
         scene.add(directionalLight, ambientLight);
 
-        sphere = new Sphere();
+        sphere = new Sphere(1, vShaderCode, fShaderCode);
         scene.add(sphere);
+        loop.updatables.push(sphere);
 
         const resizer = new Resizer(container, camera, renderer);
 
