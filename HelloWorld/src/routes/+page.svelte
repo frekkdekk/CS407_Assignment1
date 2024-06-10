@@ -1,4 +1,4 @@
-<p class="display-5 text-center">MIKE WORLD</p>
+<p class="display-5 text-center">Delascape</p>
 
 <br />
 <center>
@@ -62,7 +62,7 @@
         </div>
         <div class="col">
             <div class="card" style="width: 18rem;">
-                <img class="card-img-top" src="a6_1.png" alt="Little guy in green world.">
+                <img class="card-img-top" src="a6_2.png" alt="Little guy in green world.">
                 <div class="card-body">
                   <h5 class="card-title">Assignment 6</h5>
                   <p class="card-text">Models & Animation!</p>
