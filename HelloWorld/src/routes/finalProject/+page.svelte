@@ -12,11 +12,6 @@
 
         world.start();
 
-        document.addEventListener("keydown", (event) => {
-            if (event.key === " ") {
-                world.makeThatBoyRun();
-            }
-        });
     }
 
     onMount(() => {
@@ -36,6 +31,6 @@
         </div>  
     </div>
     <div class="row">
-        <a href="https://github.com/frekkdekk/CS407_Assignment1/tree/main/HelloWorld/src/routes/assignment6">Github</a>
+        <a href="https://github.com/frekkdekk/CS407_Assignment1/tree/main/HelloWorld/src/routes/finalProject">Github</a>
     </div>
 </div>

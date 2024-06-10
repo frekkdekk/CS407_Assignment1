@@ -75,7 +75,7 @@
     <div class="row">
         <div class="col">
             <div class="card" style="width: 18rem;">
-                <img class="card-img-top" src="a7.png" alt="TODO: Get screenshot">
+                <img class="card-img-top" src="a7_1.png" alt="Sphere with one green hemisphere and one purple.">
                 <div class="card-body">
                   <h5 class="card-title">Assignment 7</h5>
                   <p class="card-text">Shaders with GLSL.</p>
@@ -89,7 +89,7 @@
                 <div class="card-body">
                   <h5 class="card-title">Final Project</h5>
                   <p class="card-text">TODO</p>
-                  <a class="btn-primary" href="/assignment7">Go to project</a>
+                  <a class="btn-primary" href="/finalProject">Go to project</a>
                 </div>
             </div>
         </div>
