@@ -1,16 +1,49 @@
-import { SphereGeometry, Mesh, MeshStandardMaterial, MathUtils } from 'three';
+import { SphereGeometry, Mesh, ShaderMaterial, BufferGeometry, Vector3 } from 'three';
 
-let material = new MeshStandardMaterial({color: "#008B8B"});
 
-function createSphere() {
-    const geometry = new SphereGeometry(15, 32, 16);
-    const sphere = new Mesh(geometry, material);
+export class Sphere extends Mesh {
 
-    sphere.tick = (delta) => {
-        //sphere.rotation.y -= radiansPerSecond * delta;
+    geometry = new BufferGeometry();
+    material = new ShaderMaterial();
+
+    constructor(radius, vShader, fShader) {
+
+        const initGeometry = new SphereGeometry(radius, 32, 32);
+
+        const initMaterial = new ShaderMaterial({
+
+            /* uniforms: {
+                xValue: { value: 0.0 },
+                yValue: { value: 0.0 },
+                zValue: { value: 0.0 },
+                objColor: { value: new Vector3(0.3, 0.6, 0.2) },
+                time: { value: 0.0 }
+            } */
+
+            vertexShader: vShader,
+            fragmnetShader: fShader
+
+        });
+        
+        super(initGeometry, initMaterial);
+        this.geometry = initGeometry;
+        this.material = initMaterial;
+
+        this.position.set(0, 1, 0)
     }
 
-    return sphere;
-}
+    setVertexShader(newShader) {
+        this.material.vertexShader = newShader;
+        this.material.needsUpdate = true;
+    }
 
-export { createSphere }
+    setFragmentShader(newShader) { 
+        this.material.fragmentShader = newShader;
+        this.material.needsUpdate = true;
+    }
+
+    updateUniform(name, value) {
+        this.material.uniforms[name].value = value;
+    }
+
+}

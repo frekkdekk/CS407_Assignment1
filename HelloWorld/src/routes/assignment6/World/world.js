@@ -8,13 +8,21 @@ import { createOrbitControls } from './systems/controls.js';
 
 import { createFloor } from './components/floor.js';
 import { createFog } from './components/fog.js';
-import { loadMonster } from './components/monster.js';
+import { createTarget } from './components/target.js';
+import { createCone } from './components/cone.js';
+
+import { loadGuy } from './components/guy.js';
+import { loadSkull } from './components/skull.js';
+
 
 let camera, renderer, scene, loop; // Boilerplate only
 
 let directionalLight, ambientLight; // Lights only
 
-let floor, monster; // Additions only
+let floor, target, vane; // Additions only
+
+let guyActions; // Animation only
+
 
 class World {
   constructor(container) {
@@ -30,6 +38,7 @@ class World {
     const controls = createOrbitControls(camera, renderer.domElement);
     controls.target.set(1, 2, 3);
 
+    const resizer = new Resizer(container, camera, renderer);
 
     // Lights
     directionalLight = createDirectionalLight();
@@ -41,23 +50,50 @@ class World {
     floor = createFloor(200, 200);
     scene.add(floor);
 
+    target = createTarget(); // camera target
+    camera.lookAt(target.position);
+
+    vane = createCone();
+    loop.updatables.push(vane);
+
     scene.fog = createFog();
     
 
-    // chatGPT provided the promise handling - I'm unfamiliar
-    loadMonster().then(monster => {
-      console.log(monster);
-      scene.add(monster);
-      //loop.updatables.push(monster);
+    // GLTF Loading
+    loadGuy().then(( {guy, actions} ) => {
+
+      console.log("Guy Model: ", guy);
+      console.log("Guy Animations: ", actions);
+
+      guyActions = actions;
+      
+      guy.add(target); 
+      //guy.add(vane); // Deprecated: 
+
+      scene.add(guy);
+
+      loop.updatables.push(guy);
 
     }).catch(error => {
       console.error('An error occurred:', error);
-
     });
 
-    const resizer = new Resizer(container, camera, renderer);
-  }
+    loadSkull().then(( skull ) => {
 
+      scene.add(skull);
+      loop.updatables.push(skull);
+
+      // skull is not animated so I'm not adding it to updateables
+
+    }).catch(error => {
+      console.error('An error occurred:', error);
+    });
+
+  } // end constructor
+
+  makeThatBoyRun() {
+      guyActions.run.flag = true;
+  }
   
   start() {
 

@@ -1,21 +1,23 @@
 import { ConeGeometry, Mesh, MeshStandardMaterial, MathUtils } from 'three';
 
-let standardMaterial = new MeshStandardMaterial({color: "#800080"});
+let standardMaterial = new MeshStandardMaterial({color: "#1E90FF"});
 
 function createCone() {
-    const geometry = new ConeGeometry(7, 5, 3);
+    const geometry = new ConeGeometry(0.5, 1.5, 8, 1);
     const cone = new Mesh(geometry, standardMaterial);
 
-    const radiansPerSecond = MathUtils.degToRad(30);
+    const rotateSpeed = MathUtils.degToRad(90);
 
-    cone.position.z = -10;
-    cone.position.x = 6;
+    cone.position.set(0, 5, 1);
 
-    cone.rotation.set(3, -1, 7);
+    cone.rotation.set(Math.PI/2, 0, 0);
+
+    cone.material.opacity = 0.3;
 
     cone.tick = (delta) => {
-        cone.rotation.y -= radiansPerSecond * delta;
+        cone.rotation.y += rotateSpeed * delta;
     }
+
 
     return cone;
 }

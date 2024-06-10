@@ -62,7 +62,7 @@
         </div>
         <div class="col">
             <div class="card" style="width: 18rem;">
-                <img class="card-img-top" src="a6.png" alt="Little guy in green world.">
+                <img class="card-img-top" src="a6_1.png" alt="Little guy in green world.">
                 <div class="card-body">
                   <h5 class="card-title">Assignment 6</h5>
                   <p class="card-text">Models & Animation!</p>
@@ -75,7 +75,7 @@
     <div class="row">
         <div class="col">
             <div class="card" style="width: 18rem;">
-                <img class="card-img-top" src="..." alt="TODO: Get screenshot">
+                <img class="card-img-top" src="a7.png" alt="TODO: Get screenshot">
                 <div class="card-body">
                   <h5 class="card-title">Assignment 7</h5>
                   <p class="card-text">Shaders with GLSL.</p>
@@ -83,10 +83,22 @@
                 </div>
             </div>
         </div>
+        <div class="col">
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="..." alt="TODO: Get screenshot">
+                <div class="card-body">
+                  <h5 class="card-title">Final Project</h5>
+                  <p class="card-text">TODO</p>
+                  <a class="btn-primary" href="/assignment7">Go to project</a>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            
+        </div>
     </div>
     <br />
     <div class="row">
-        <a href="https://www.youtube.com/watch?v=oynRwBki8GE&t=1237s">Feed Your Soul</a>
     </div>
 </div>
 </center>  

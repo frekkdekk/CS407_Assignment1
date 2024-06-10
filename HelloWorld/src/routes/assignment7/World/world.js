@@ -6,7 +6,7 @@ import { Resizer } from './systems/resizer.js';
 import { Loop } from './systems/loop.js';
 import { createOrbitControls } from './systems/controls.js';
 
-import { createCube } from './components/cube.js';
+import { Sphere } from './components/sphere.js';
 
 import { GridHelper } from 'three';
 
@@ -19,7 +19,7 @@ let directionalLight;
 let ambientLight;
 
 let isAnimated;
-let cube;
+let sphere;
 
 class World {
     constructor(container) {
@@ -44,43 +44,33 @@ class World {
         ambientLight = createAmbientLight();
         scene.add(directionalLight, ambientLight);
 
-        cube = createCube();
-        scene.add(cube);
+        sphere = new Sphere();
+        scene.add(sphere);
 
         const resizer = new Resizer(container, camera, renderer);
 
     }
- 
-    updateVertexShader(newCode) {
-        let vertexShaderCode = newCode;
-        //World.updateVertexShader(newCode);
-    }
 
-    updateFragmentShader(newCode) {
-        let fragmentShaderCode = newCode;
-        //World.updateFragmentShader(newCode);
+    updateShaders(vertexShader, fragmentShader) {
+        sphere.setVertexShader(vertexShader);
+        sphere.setFragmentShader(fragmentShader);
+        sphere.material.needsUpdate = true;
     }
 
     render() {
-
         renderer.render(scene, camera);
-
     }
 
     start() {
-
         loop.start();
-
     }
 
     stop() {
-
         loop.stop();
-
     }
 
 
-    toggleAnimation() {
+    /* toggleAnimation() {
 
         isAnimated = !isAnimated;
 
@@ -92,7 +82,7 @@ class World {
             loop.stop();
         }
 
-    }
+    } */
 
 }
 
