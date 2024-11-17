@@ -1,31 +1,24 @@
-
-
 <p class="display-5 text-center">About</p>
 
 <br>
 
 <div class="container">
-    <div class="row">
-        <div class="col"></div>
-        <div class="col">
-            <p>Mike's three.js portfolio.</p>
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <p>Mike's Developer Portfolio & Resume</p>
             <ul>
                 <li>
-                    <a href="https://github.com/frekkdekk/CS407_Assignment1">
+                    <a href="https://github.com/frekkdekk">
                         Github</a>
                 </li>
                 <li>
-                    <a href="https://vercel.com/frekkdekks-projects/cs-407-assignment1/3Nd7F9JbV6S6bpMPYFjgEB16Nasx">
-                        Vercel</a>
+                    <a href="www.linkedin.com/in/m-deladurantaye">
+                        LinkedIn</a>
                 </li>
                 <li>
                     <a href="https://youtu.be/oynRwBki8GE?si=FyRorQFpHZAnguFy">Feed Your Soul</a>
                 </li>
             </ul>
         </div>
-        <div class="col"></div>
-    </div>
-    <div class="row">
-        <div class="scene-container" id="about-scene"></div>
     </div>
 </div>
