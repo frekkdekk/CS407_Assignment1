@@ -15,6 +15,10 @@
         window.addEventListener("keydown", (e) => {
             world.keyDown(e);
         });
+
+        window.addEventListener("keyup", (e) => {
+            world.keyUp(e);
+        });
     }
 
     onMount(() => {

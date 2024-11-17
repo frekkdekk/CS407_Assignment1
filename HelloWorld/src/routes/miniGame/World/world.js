@@ -9,16 +9,16 @@ import { createOrbitControls } from './systems/controls.js';
 import { createFloor } from './components/floor.js';
 import { createFog } from './components/fog.js';
 
-import { loadGuy } from './components/guy.js';
+import { loadGuy, direction } from './components/guy.js';
 
 
 let camera, renderer, scene, loop; // Boilerplate only
 
 let directionalLight, ambientLight; // Lights only
 
-let floor, target; // Additions only
+let floor; // Additions only
 
-let guyActions; // Animation only
+let navDirection = direction;
 
 
 class World {
@@ -49,14 +49,14 @@ class World {
 
     scene.fog = createFog();
 
-    let guy = loadGuy().then(( {guy, actions} ) => {
+    loadGuy().then(( {guy, actions} ) => {
 
       console.log("Guy Model: ", guy);
       console.log("Guy Animations: ", actions);
 
-      guyActions = actions;
-      
-      guy.add(target); 
+      const guyActions = actions;
+
+      camera.lookAt(guy.children[2].position);
 
       scene.add(guy);
 
@@ -66,27 +66,38 @@ class World {
       console.error('An error occurred:', error);
     });
 
-    camera.lookAt(guy.target.position);
-
   } // end constructor
 
   keyDown(keyEvent) {
       switch(keyEvent.key) {
         case 'w':
-          guy.position.z += 1;
+          navDirection.z += 1;
           break;
         case 's':
-          guy.position.z -= 1;
+          navDirection.z -= 1;
           break;
         case 'a':
-          guy.position.x -= 1;
+          navDirection.x -= 1;
           break;
         case 'd':
-          guy.position.x += 1;
+          navDirection.x += 1;
           break;
         default:
           break;
       }
+  }
+
+  keyUp(keyEvent) {
+    switch(keyEvent.key) {
+      case 'w':
+      case 's':
+        navDirection.z = 0;
+        break;
+      case 'a':
+      case 'd':
+        navDirection.x = 0;
+        break;
+    }
   }
   
   start() {

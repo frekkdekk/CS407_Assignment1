@@ -8,8 +8,7 @@
     <div class="row">
         <div class="col"></div>
         <div class="col">
-            <p>S24 CS407 - Assignment Portfolio</p>
-            <p>Mike Deladurantaye</p>
+            <p>Mike's three.js portfolio.</p>
             <ul>
                 <li>
                     <a href="https://github.com/frekkdekk/CS407_Assignment1">
@@ -20,7 +19,7 @@
                         Vercel</a>
                 </li>
                 <li>
-                    <a href="https://www.youtube.com/watch?v=rZLDBovy9lI">Feed Your Soul</a>
+                    <a href="https://youtu.be/oynRwBki8GE?si=FyRorQFpHZAnguFy">Feed Your Soul</a>
                 </li>
             </ul>
         </div>
